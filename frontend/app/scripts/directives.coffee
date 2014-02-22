@@ -16,3 +16,10 @@ angular.module('app.directives', [
   (scope, elm, attrs) ->
     elm.text(version)
 ])
+
+.directive('rdioWebPlayer', [
+  'version'
+  
+  
+  
+])
