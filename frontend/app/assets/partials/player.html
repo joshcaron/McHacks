@@ -1,0 +1,21 @@
+<div id="player" ng-controller="PlayerControl">
+  <div id="album_art">
+    <img id="art" src="{{ art }}" height="200" width="200" style="float:left;margin-right:20px;">
+  </div>
+  <div id="metadata">
+    <p><span id="track">{{ track }}</span></p>
+    <p><span id="album">{{ album }}</span></p>
+    <p><span id="artist">{{ artist }}</span></p>
+  </div>
+  <div id="position">
+    <span style="display:inline-block;width:200px;border:1px solid black;">
+      <span id="position_slider" style="display:inline-block;background-color:#666">&nbsp;</span>
+    </span>
+  </div>
+  <div id="controls">
+    <button id="previous">&lt;&lt;</button>
+    <button id="play">|&gt;</button>
+    <button id="pause">||</button>
+    <button id="next">&gt;&gt;</button>
+  </div>
+</div>
