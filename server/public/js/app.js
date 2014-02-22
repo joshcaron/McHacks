@@ -21,27 +21,48 @@ App.config([
 angular.module('app.controllers', []).controller('McHacksJukeboxControl', function($scope) {
   $scope.title = "McHacks";
   $scope.name = "Christopher";
-  return $scope.phone_number = "+14072639482";
+  $scope.phone_number = "+14072639482";
+  $scope.playbackToken = "GAlTCRLL_____2R2cHlzNHd5ZXg3Z2M0OXdoaDY3aHdrbmxvY2FsaG9zdOfSuK3-btuBIw0X3zm36Uk=";
+  return $scope.init = function() {
+    $('#api').rdio($scope.playbackToken);
+    return $('#api').bind('ready.rdio', function() {
+      return $('#api').rdio().play('a171827');
+    });
+  };
 }).controller('PlaylistControl', function($scope) {
-  return $scope.count = 5;
+  $scope.count = 5;
+  $scope.tracks = [];
+  return $scope.current_track = "";
 }).controller('PlayerControl', function($scope) {
   $scope.track = "Timber";
   $scope.artist = "Pitbull, Ke$ha";
   $scope.album = "Global Warming: Meltdown (Deluxe Version)";
-  $scope.playbackToken = "XYZ";
   $scope.icon = "";
-  return $scope.art = "";
+  $scope.art = "";
+  $scope.key = "t38018328";
+  $scope.playing = false;
+  $scope.position = 0;
+  $scope.duration = 300;
+  $scope.pause = function() {
+    console.log("Pausing");
+    return $scope.playing = false;
+  };
+  $scope.play = function() {
+    $.rdio.play($scope.key);
+    return $scope.playing = true;
+  };
+  return $('#api').bind('positionChanged.rdio', function(e, position) {
+    return $scope.position = Math.floor(100 * position / duration);
+  });
 });
 ;'use strict';
 /* Directives*/
 
-angular.module('app.directives', ['app.services']).directive('appVersion', [
-  'version', function(version) {
-    return function(scope, elm, attrs) {
-      return elm.text(version);
-    };
-  }
-]).directive('rdioWebPlayer', ['version']);
+angular.module('app.directives', ['app.services']).directive("rdioWebPlayer", function() {
+  return {
+    templateUrl: 'player.html'
+  };
+});
 ;'use strict';
 /* Filters*/
 
@@ -56,7 +77,7 @@ angular.module('app.filters', []).filter('interpolate', [
 /* Sevices*/
 
 angular.module('app.services', []).factory('version', function() {
-  return "0.1".factory('');
+  return "0.1";
 });
 ;
 //# sourceMappingURL=app.js.map
