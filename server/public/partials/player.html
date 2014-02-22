@@ -1,4 +1,5 @@
-<div id="player" ng-controller="PlayerControl">
+<div id="player" ng-init="init()" ng-controller="PlayerControl">
+  <div id="api"></div>
   <div id="album_art">
     <img id="art" src="{{ art }}" height="200" width="200" style="float:left;margin-right:20px;">
   </div>
@@ -9,13 +10,11 @@
   </div>
   <div id="position">
     <span style="display:inline-block;width:200px;border:1px solid black;">
-      <span id="position_slider" style="display:inline-block;background-color:#666">&nbsp;</span>
+      <span id="position_slider" style="width:{{ position }}%;display:inline-block;background-color:#666">&nbsp;</span>
     </span>
   </div>
   <div id="controls">
-    <button id="previous">&lt;&lt;</button>
-    <button id="play">|&gt;</button>
-    <button id="pause">||</button>
-    <button id="next">&gt;&gt;</button>
+    <button ng-hide="playing" ng-click="play()" id="play">|&gt;</button>
+    <button ng=hide="!playing" ng-click="pause()" id="pause">||</button>
   </div>
 </div>
