@@ -5,6 +5,7 @@ var root = __dirname,
 	app = express();
 
 app.configure(function() {
+	app.use(express.cookieParser("secret"));
 	app.use(express.bodyParser());
 	app.use(express.methodOverride());
 	app.use(app.router);
