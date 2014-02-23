@@ -6,7 +6,7 @@ exports.setup = function(app) {
 
 	app.get('/login', function(req, res) {
 		// begin the authentication process
-		var callbackUrl = "http://localhost:8888/callback";
+		var callbackUrl = "http://162.243.0.217/callback";
 		rdio.beginAuthentication(callbackUrl, function(err, authUrl) {
 			if (err) {
 				console.log(err);
@@ -24,7 +24,7 @@ exports.setup = function(app) {
 	});
 
 	app.get('/callback', function(req, res) {
-		var requestToken = req.cookie('requestToken');
+		var requestToken = res.cookie('requestToken');
 		var verifier = req.query.oauth_verifier;
 
 		if (requestToken && verifier) {
