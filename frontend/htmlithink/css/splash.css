@@ -13,26 +13,11 @@ body {
     font-size: 14px;
 }
 
-.content {
-    position: absolute;
-    top: 30%;
-    width: 100%;
-    margin: 0px;
-}
+.overlay {
 
-.container {
+    background-color: white;
     width: 100%;
     text-align: center;
-    margin-top: 0px;
-    margin-bottom: 0px;
-}
-
-#primary {
-    background-color: white;
     padding-top: 20px;
     padding-bottom: 20px;
-}
-
-#secondary {
-    background-color: rgba(77, 77, 77, 10);
 }
